@@ -14,7 +14,7 @@ jobs:
       run: npm install
 
     - name: Start Server
-      run: npm start
+      run: npm start & sleep 10
 
   run-tests:
     needs: start-server
