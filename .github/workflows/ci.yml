@@ -1,0 +1,17 @@
+name: Run Jest Tests
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Install Dependencies
+      run: pnpm install
+
+    - name: Run Jest Tests
+      run: pnpm test
