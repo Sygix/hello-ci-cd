@@ -3,7 +3,7 @@ name: Run Jest Tests with Server
 on: [push, pull_request]
 
 jobs:
-  start-server:
+  jest-tests:
     runs-on: ubuntu-latest
 
     steps:
@@ -17,26 +17,6 @@ jobs:
       run: |
         npm start &
         sleep 10
-        # Récupérer l'adresse IP du serveur et la stocker dans une variable
-        export SERVER_URL=http://localhost:1234
-
-  run-tests:
-    needs: start-server
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
-
-    - name: Install Dependencies
-      run: npm install
-
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
-
+   
     - name: Run Jest Tests with Server URL
-      env:
-        SERVER_URL: ${{ needs.start-server.outputs.SERVER_URL }}
-      run: npm test
+        run: npm test
