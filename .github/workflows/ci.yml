@@ -14,7 +14,11 @@ jobs:
       run: npm install
 
     - name: Start Server
-      run: npm start & sleep 10
+      run: |
+        npm start &
+        sleep 10
+        # Récupérer l'adresse IP du serveur et la stocker dans une variable
+        export SERVER_URL=http://localhost:1234
 
   run-tests:
     needs: start-server
@@ -27,5 +31,12 @@ jobs:
     - name: Install Dependencies
       run: npm install
 
-    - name: Run Jest Tests
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '14'
+
+    - name: Run Jest Tests with Server URL
+      env:
+        SERVER_URL: ${{ needs.start-server.outputs.SERVER_URL }}
       run: npm test
