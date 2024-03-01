@@ -1,9 +1,9 @@
-name: Run Jest Tests
+name: Run Jest Tests with Server
 
 on: [push, pull_request]
 
 jobs:
-  build:
+  start-server:
     runs-on: ubuntu-latest
 
     steps:
@@ -11,7 +11,21 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Install Dependencies
-      run: pnpm install
+      run: npm install
+
+    - name: Start Server
+      run: npm start & sleep 10
+
+  run-tests:
+    needs: start-server
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Install Dependencies
+      run: npm install
 
     - name: Run Jest Tests
-      run: pnpm test
+      run: npm test
