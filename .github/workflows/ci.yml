@@ -19,4 +19,4 @@ jobs:
         sleep 10
    
     - name: Run Jest Tests with Server URL
-        run: npm test
+      run: npm test
