@@ -1,4 +1,4 @@
-name: Run Jest Tests with Server
+name: CI
 
 on: [push, pull_request]
 
