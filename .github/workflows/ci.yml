@@ -3,9 +3,34 @@ name: CI
 on: [push, pull_request]
 
 jobs:
-  test:
+  job1:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Print Hello World
-      run: echo "hello world"
+    - name: Job 1
+      run: |
+        echo "hello job 1"
+        sleep 5
+
+  job2:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Job 2a
+      run: |
+        echo "hello job 2a"
+        sleep 5
+
+    - name: Job 2b
+      run: |
+        echo "hello job 2b"
+        sleep 5
+
+  job3:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Job 3
+      run: |
+        echo "hello job 3"
+        sleep 30
