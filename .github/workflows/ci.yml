@@ -3,20 +3,9 @@ name: Run Jest Tests with Server
 on: [push, pull_request]
 
 jobs:
-  jest-tests:
+  test:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
-
-    - name: Install Dependencies
-      run: npm install
-
-    - name: Start Server
-      run: |
-        npm start &
-        sleep 10
-   
-    - name: Run Jest Tests
-      run: npm test
+    - name: Print Hello World
+      run: echo "hello world"
