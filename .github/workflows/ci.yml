@@ -12,25 +12,27 @@ jobs:
         echo "hello job 1"
         sleep 5
 
-  job2:
+  job2a:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Job 2a
-      id: job2a
+    - name: Job 2
       run: |
         echo "hello job 2a"
         sleep 5
 
-    - name: Job 2b
+  job2b:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Job 2
       run: |
         echo "hello job 2b"
         sleep 5
 
   job3:
     runs-on: ubuntu-latest
-    if: ${{ needs.job2.outputs.job2a }}
-
+    needs: job2b
     steps:
     - name: Job 3
       run: |
