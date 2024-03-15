@@ -8,7 +8,21 @@ on:
       - '*'
 
 jobs:
-  check-quality:
+  audit:
+    name: Audit packages
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Audit packages
+        run: npm audit --audit-level critical
+        env:
+          CI: true
+
+  check-quality:  
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
